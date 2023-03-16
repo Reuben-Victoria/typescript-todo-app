@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.input-box {
+  @apply border-[#D0D5DD] h-[2.75rem] bg-gray-50 border text-gray-900 text-sm rounded-lg focus:ring-neutral-primaryAccent focus:border-neutral-primaryAccent block w-full  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-neutral-primaryAccent dark:focus:border-neutral-primaryAccent;
+}
+
+.authbutton {
+  @apply bg-neutral-primaryAccent py-[0.5rem] md:py-[0.625rem] md:px-[1.125rem] text-center text-white md:text-[1rem] font-semibold w-[100%] rounded-lg mt-[2.00rem] md:mt-[2.25rem];
+}
+
+.error {
+  @apply text-neutral-primaryErrorAccent absolute text-[0.875rem] md:text-[0.875rem];
+}
