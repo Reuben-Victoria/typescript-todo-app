@@ -7,9 +7,29 @@
 }
 
 .authbutton {
-  @apply bg-neutral-primaryAccent py-[0.5rem] md:py-[0.625rem] md:px-[1.125rem] text-center text-white md:text-[1rem] font-semibold w-[100%] rounded-lg mt-[2.00rem] md:mt-[2.25rem];
+  @apply bg-neutral-primaryAccent py-[0.5rem] md:py-[0.625rem] md:px-[1.125rem] text-center text-white flex items-center justify-center md:text-[1rem] md:h-[2.75rem] font-semibold w-[100%] rounded-lg mt-[2.00rem] md:mt-[2.25rem] mx-auto;
+}
+
+.disabled{
+  @apply bg-[#e6e6e6] pointer-events-none
 }
 
 .error {
   @apply text-neutral-primaryErrorAccent absolute text-[0.875rem] md:text-[0.875rem];
+}
+
+.spinner {
+  animation-name: spin;
+  animation-duration: 500ms;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }

@@ -12,10 +12,10 @@ export const loginSchema = Yup.object().shape({
 });
 
 export const signUpSchema = Yup.object().shape({
-    name: Yup.string()
+    username: Yup.string()
       .min(2, 'Too Short!')
       .max(50, 'Too Long!')
-      .required('First Name is required'),
+      .required('Username is required'),
     // lastname: Yup.string()
     //   .min(2, 'Too Short!')
     //   .max(50, 'Too Long!')

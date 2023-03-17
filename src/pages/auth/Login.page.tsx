@@ -1,4 +1,5 @@
 import { AuthLayout } from "../../layouts/authLayout";
+import { Button } from "../../components/Button";
 import { Input } from "../../components/Input";
 import { Formik } from "formik";
 import { loginSchema } from "../../utils/validationSchema";
@@ -8,11 +9,14 @@ export const Login = () => {
     <AuthLayout
       title='Welcome back!'
       description='Welcome back! please enter your details'
-      buttonText='Login'
     >
-      <Formik initialValues={{ email: "", password: "" }} validationSchema={loginSchema} onSubmit={() => {}}>
+      <Formik
+        initialValues={{ email: "", password: "" }}
+        validationSchema={loginSchema}
+        onSubmit={() => {}}
+      >
         {(formik) => {
-          const { touched, errors } = formik;
+          const { touched, errors, isValid, dirty } = formik;
 
           return (
             <form onSubmit={formik.handleSubmit}>
@@ -26,20 +30,27 @@ export const Login = () => {
                 onBlur={formik.handleBlur}
               />
               {touched.email && errors.email && (
-                <p className="error">{errors.email}</p>
+                <p className='error'>{errors.email}</p>
               )}
               <Input
-                type='password'
                 name='password'
                 label='Password'
                 placeholder='********'
+                showPassword
                 onChange={formik.handleChange}
                 value={formik.values.password}
                 onBlur={formik.handleBlur}
               />
               {touched.password && errors.password && (
-                <p className="error">{errors.password}</p>
+                <p className='error'>{errors.password}</p>
               )}
+              <Button
+                text={"Log in"}
+                type={"submit"}
+                disabled={!isValid}
+                buttonTheme={"authbutton"}
+                disabledButton={!isValid && !dirty ? "disabled" : ""}
+              />
             </form>
           );
         }}

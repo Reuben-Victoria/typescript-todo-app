@@ -14,11 +14,15 @@
 //     value?: string | ReadonlyArray<string> | number | undefined;
 // }
 
+import { ReactComponent as Loader } from "../assets/loading.svg";
+
 type ButtonProps = {
   onClick?: () => void;
   type?: string;
   buttonTheme?: string;
   text: string | Element;
+  loading?: boolean | undefined;
+  disabledButton: string | boolean;
   [x: string]: any;
 };
 
@@ -27,17 +31,19 @@ export const Button = ({
   text,
   type,
   rest,
+  disabledButton,
+  loading,
   buttonTheme,
 }: ButtonProps) => {
   return (
     <>
       <button
         onClick={onClick}
-        className={`${buttonTheme}`}
+        className={`${buttonTheme} ${disabledButton}`}
         type={type}
         {...rest}
       >
-        {text}
+        {loading ? <Loader className='spinner' /> : text}
       </button>
     </>
   );

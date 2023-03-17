@@ -1,31 +1,57 @@
 import { Formik } from "formik";
+import { Button } from "../../components/Button";
 import { AuthLayout } from "../../layouts/authLayout";
 import { signUpSchema } from "../../utils/validationSchema";
 import { Input } from "../../components/Input";
+import { useAddNewUser } from "../../hooks/useUserData.js";
 
 export const Signup = () => {
+  const { mutate, isLoading } = useAddNewUser();
+  // const [addUserData, setAddUserData] = useState({
+  //   // username:username
+  // })
+  console.log(isLoading, "loading");
   return (
-    <AuthLayout title='Sign up' buttonText={"Sign up"}>
+    <AuthLayout
+      title='Sign up'
+      buttonText={"Sign up"}
+      loading={isLoading}
+      type='submit'
+    >
       <Formik
         validationSchema={signUpSchema}
-        initialValues={{ name: "", email: "", password: "" }}
-        onSubmit={() => {}}
+        initialValues={{ username: "", email: "", password: "" }}
+        onSubmit={(values) => {
+          mutate({
+            username: values.username,
+            email: values.email,
+            password: values.password,
+          });
+          console.log(
+            {
+              username: values.username,
+              email: values.email,
+              password: values.password,
+            },
+            "fgdfghdgj"
+          );
+        }}
       >
         {(formik) => {
-          const { touched, errors } = formik;
+          const { touched, errors, isValid } = formik;
           return (
             <form onSubmit={formik.handleSubmit}>
               <Input
                 type='text'
-                label='Name'
-                name='name'
+                label='User name'
+                name='username'
                 placeholder='Enter your name'
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
-                value={formik.values.name}
+                value={formik.values.username}
               />
-              {touched.name && errors.name && (
-                <p className='error'>{errors.name}</p>
+              {touched.username && errors.username && (
+                <p className='error'>{errors.username}</p>
               )}
               <Input
                 type='email'
@@ -51,6 +77,14 @@ export const Signup = () => {
               {touched.password && errors.password && (
                 <p className='error'>{errors.password}</p>
               )}
+              <Button
+                text={"Sign up"}
+                type={"submit"}
+                disabled={!isValid }
+                buttonTheme={"authbutton"}
+                disabledButton={!isValid && "disabled"}
+                loading={isLoading}
+              />
             </form>
           );
         }}
