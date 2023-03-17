@@ -7,10 +7,6 @@ import { useAddNewUser } from "../../hooks/useUserData.js";
 
 export const Signup = () => {
   const { mutate, isLoading } = useAddNewUser();
-  // const [addUserData, setAddUserData] = useState({
-  //   // username:username
-  // })
-  console.log(isLoading, "loading");
   return (
     <AuthLayout
       title='Sign up'
