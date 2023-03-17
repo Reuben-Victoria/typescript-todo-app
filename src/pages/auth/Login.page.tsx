@@ -3,8 +3,10 @@ import { Button } from "../../components/Button";
 import { Input } from "../../components/Input";
 import { Formik } from "formik";
 import { loginSchema } from "../../utils/validationSchema";
+import { useSignInUser } from "../../hooks/useUserData";
 
 export const Login = () => {
+  const { mutate, isLoading } = useSignInUser();
   return (
     <AuthLayout
       title='Welcome back!'
@@ -13,7 +15,12 @@ export const Login = () => {
       <Formik
         initialValues={{ email: "", password: "" }}
         validationSchema={loginSchema}
-        onSubmit={() => {}}
+        onSubmit={(values) => {
+          mutate({
+            email: values.email,
+            password: values.password,
+          });
+        }}
       >
         {(formik) => {
           const { touched, errors, isValid, dirty } = formik;
@@ -47,9 +54,10 @@ export const Login = () => {
               <Button
                 text={"Log in"}
                 type={"submit"}
-                disabled={!isValid}
+                disabled={!isValid && dirty}
                 buttonTheme={"authbutton"}
                 disabledButton={!isValid && !dirty ? "disabled" : ""}
+                loading={isLoading}
               />
             </form>
           );
