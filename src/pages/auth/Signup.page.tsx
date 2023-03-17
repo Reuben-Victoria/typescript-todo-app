@@ -62,9 +62,9 @@ export const Signup = () => {
                 <p className='error'>{errors.email}</p>
               )}
               <Input
-                type='password'
                 label='Password'
                 name='password'
+                showPassword
                 placeholder='Create a Password'
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}

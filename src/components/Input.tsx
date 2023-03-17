@@ -24,6 +24,7 @@ export const Input = ({
   ...rest
 }: InputProps) => {
   const [togglePassword, setTogglePassword] = useState<boolean>(false);
+  console.log(showPassword, type, ">>>>>>");
   function toggleVisibility() {
     setTogglePassword(togglePassword ? false : true);
   }
@@ -32,9 +33,9 @@ export const Input = ({
       <label htmlFor={name} className='block mb-[0.375rem]'>
         {label}
       </label>
-      <div className='input-box p-[0rem] w-[100%] relative'>
+      <div className='input-box p-[0rem] w-[100%] relative '>
         <input
-          className=' border-transparent w-[100%] p-2.5 rounded-lg h-[100%]'
+          className=' border-transparent w-[100%] p-2.5 rounded-lg h-[100%] '
           type={showPassword && togglePassword ? "password" : type}
           name={name}
           placeholder={placeholder}
@@ -42,14 +43,15 @@ export const Input = ({
           value={value}
           onBlur={onBlur}
         />
-        <div
+
+        <span
           onClick={toggleVisibility}
           className={`{${
-            showPassword ? `inline-block` : `hidden`
-          } absolute text-[0.75rem] font-bold text-neutral-darkGray cursor-pointer  `}
-        >
-          <span> {togglePassword ? "HIDE" : "SHOW"}</span>
-        </div>
+            showPassword ? ` inline ` : ` hidden `
+          } absolute text-[0.75rem] font-bold text-neutral-darkGray cursor-pointer top-[0.6875rem] z-10 right-[0.5625rem]`}
+        > 
+          {togglePassword ? "HIDE" : "SHOW"}
+        </span>
       </div>
     </div>
   );
