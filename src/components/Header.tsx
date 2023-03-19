@@ -24,7 +24,7 @@ export const Header = ({ close, setClose }: HeaderProps) => {
           </div>
 
           <div className='md:hidden' onClick={()=>(setClose(!close))}>
-            {close ? <RxHamburgerMenu /> : <VscClose />}
+            {close ? <RxHamburgerMenu size={"1.5rem"}/> : <VscClose size={"1.5rem"}/>}
           </div>
         </div>
       </nav>
